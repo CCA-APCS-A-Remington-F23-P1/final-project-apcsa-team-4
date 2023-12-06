@@ -1,12 +1,66 @@
-public class Key {
-    
-    private final Note NOTE;
+import java.awt.Color;
+import java.awt.Graphics;
 
+public class Key {
+    //instance vars
+    private final Note NOTE;
+    private int xPos;
+    private int yPos;
+    private int width;
+    private int height;
+    private Color color;
+
+    //constructors
     public Key(Note NOTE) {
         this.NOTE = NOTE;
     }
 
+    public Key(Note NOTE, int x, int y, int w, int h, Color c) {
+        this.NOTE = NOTE;
+        xPos=x;
+        yPos=y;
+        width=w;
+        height=h;
+        color=c;
+    }
+
+    //getters
     public Note getNote() {
         return NOTE;
+    }
+
+    public int getXPos() {
+        return xPos;
+    }
+
+    public int getYPos() {
+        return yPos;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    //setters
+    public void setColor(Color col) {
+        color = col;
+    }
+    
+    //methods
+    public void draw(Graphics window) {
+        window.setColor(color);
+        window.fillRect(getXPos(),getYPos(),getWidth(),getHeight());
+    }
+
+    public String toString() {
+        return NOTE + " " + getXPos() + " " + getYPos() + " " + getWidth() + " " + getHeight() + " " + getColor();
     }
 }

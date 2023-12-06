@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+public class Note {
+    
+=======
 import java.io.File;
 import java.util.ArrayList;
 
@@ -108,4 +112,5 @@ public class Note {
     public String toString() {
         return "" + PITCH + ACCIDENTAL + Integer.toString(OCTAVE);
     }
+>>>>>>> origin/HEAD
 }

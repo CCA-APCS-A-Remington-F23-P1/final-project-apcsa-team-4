@@ -9,7 +9,6 @@ public class Key {
     private int width;
     private int height;
     private Color color;
-    private int x;
 
     //constructors
     public Key(Note NOTE) {

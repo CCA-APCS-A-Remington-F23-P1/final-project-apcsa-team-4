@@ -11,18 +11,34 @@ public class Piano
 
   public Piano()
   {
-    whiteKeys = new ArrayList<Key>(1);
-    blackKeys = new ArrayList<Key>(1);
-  }
+    whiteKeys = new ArrayList<Key>(15);
+    blackKeys = new ArrayList<Key>(10);
+    char[] naturalKeys = {'c', 'd', 'e', 'f', 'g', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'c'};
 
-  public void add(Key k, String color)
-  {
-    if (color.equals("white")) {
-      whiteKeys.add(k);
+    char[] sharpKeys = {'c', 'd', 'f', 'g', 'a', 'c', 'd', 'f', 'g', 'a'};
+    int count = 0;
+
+    int octave = 4;
+
+    for (int i = 0; i < whiteKeys.size(); i++) {
+      if (count == 6)
+        octave = 5;
+      if (count == 14)
+        octave = 6;
+      whiteKeys.set(i, new WhiteKey(new Note(naturalKeys[i], 'n', octave)));
+      count++;
     }
-    else if (color.equals("black")) {
-      blackKeys.add(k);
+
+    octave = 4;
+    count = 0;
+
+    for (int i = 0; i < blackKeys.size(); i++) {
+      if (count == 4)
+        octave++;
+      blackKeys.set(i, new BlackKey(new Note(sharpKeys[i], 's', octave)));
     }
+
+
   }
 
   //post - draw each key

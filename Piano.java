@@ -25,7 +25,7 @@ public class Piano
     }
   }
 
-  //post - draw each Ammo
+  //post - draw each key
   public void draw(Graphics window)
   {
     for (int i = 0; i < whiteKeys.size(); i++) {
@@ -35,8 +35,6 @@ public class Piano
       blackKeys.get(i).draw(window);
     }
   }
-  
-  // remove any Ammo which has reached the edge of the screen
 
   public List<Key> getWhiteList()
   {

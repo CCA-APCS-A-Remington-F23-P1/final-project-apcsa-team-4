@@ -24,6 +24,14 @@ public class Key {
         color=c;
     }
 
+    public Key(Note NOTE, int y, int w, int h, Color c) {
+        this.NOTE = NOTE;
+        yPos=y;
+        width=w;
+        height=h;
+        color=c;
+    }
+
     //getters
     public Note getNote() {
         return NOTE;

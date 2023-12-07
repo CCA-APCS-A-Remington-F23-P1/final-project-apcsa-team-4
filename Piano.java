@@ -1,18 +1,18 @@
-import java.awt.Color;
+// import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
+// import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Piano
 {
-  private List<WhiteKey> whiteKeys;
-  private List<BlackKey> blackKeys;
+  private List<Key> whiteKeys;
+  private List<Key> blackKeys;
 
   public Piano()
   {
-    whiteKeys = new ArrayList<WhiteKey>(1);
-    blackKeys = new ArrayList<BlackKey>(1);
+    whiteKeys = new ArrayList<Key>(1);
+    blackKeys = new ArrayList<Key>(1);
   }
 
   public void add(Key k, String color)

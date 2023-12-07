@@ -45,7 +45,7 @@ public class Key {
         return height;
     }
 
-    public int getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -60,6 +60,7 @@ public class Key {
         window.fillRect(getXPos(),getYPos(),getWidth(),getHeight());
     }
 
+    @Override
     public String toString() {
         return NOTE + " " + getXPos() + " " + getYPos() + " " + getWidth() + " " + getHeight() + " " + getColor();
     }

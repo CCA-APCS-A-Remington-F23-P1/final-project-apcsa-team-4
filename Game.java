@@ -1,5 +1,5 @@
 import javax.swing.JFrame;
-import java.awt.Component;
+import java.awt.*;
 
 public class Game extends JFrame
 {
@@ -12,7 +12,7 @@ public class Game extends JFrame
     setSize(WIDTH,HEIGHT);
 
     Screen theGame = new Screen();
-    ((Component)theGame).setFocusable(true);
+    ((Component) theGame).setFocusable(true);
 
     getContentPane().add(theGame);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

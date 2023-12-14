@@ -1,4 +1,4 @@
-// import java.awt.Color;
+import java.awt.Color;
 import java.awt.Graphics;
 // import java.awt.Image;
 import java.util.ArrayList;
@@ -20,14 +20,18 @@ public class Piano
 
     int whiteX = 0;
     int blackX = 39;
+    int wc = 0;
     int bc = 0;
     for (Note n: notes) {
       if (n.getAccidental() == 110) {
         WhiteKey key = new WhiteKey(n, whiteX);
+        if (wc % 2 == 0)
+          key.setColor(Color.RED);
         keys.add(key);
         whiteKeys.add(key);
         whiteX += key.getWidth();
         System.out.println(n);
+        wc++;
       } else if (n.getAccidental() == 115) {
         BlackKey key = new BlackKey(n, blackX);
         keys.add(key);

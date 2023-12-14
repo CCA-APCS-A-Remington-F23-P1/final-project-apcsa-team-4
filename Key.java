@@ -76,7 +76,7 @@ public class Key {
         window.fillRect(getXPos(),getYPos(),getWidth(),getHeight());
 
         window.setColor(color);
-        window.fillRect(getXPos()+3,getYPos()+3,getWidth()-6,getHeight()-6);
+        window.fillRect(getXPos()+1,getYPos()+1,getWidth()-2,getHeight()-2);
     }
 
     @Override

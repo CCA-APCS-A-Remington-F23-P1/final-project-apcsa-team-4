@@ -51,9 +51,9 @@ public class Screen extends Canvas implements KeyListener, Runnable
     Graphics graphToBack = back.createGraphics();
 
     
-    graphToBack.setColor(Color.green);
+    graphToBack.setColor(Color.gray);
 
-    graphToBack.fillRect(0,0,1600,600);
+    graphToBack.fillRect(0,0,780,1200);
 
     piano.draw(graphToBack);
     

@@ -10,6 +10,6 @@ public class WhiteKey extends Key {
     }
 
     public WhiteKey(Note NOTE, int x) {
-        super(NOTE, x, 50, 300, Color.WHITE);
+        super(NOTE, x, 52, 300, Color.WHITE);
     }
 }

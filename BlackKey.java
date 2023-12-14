@@ -4,12 +4,12 @@ public class BlackKey extends Key {
 
     public BlackKey(Note NOTE) {
         super(NOTE);
-        this.setWidth(26);
-        this.setHeight(125);
+        this.setWidth(34);
+        this.setHeight(150);
         this.setColor(Color.BLACK);
     }
 
     public BlackKey(Note NOTE, int x) {
-        super(NOTE, x, 50, 125, Color.BLACK);
+        super(NOTE, x, 34, 150, Color.BLACK);
     }
 }

@@ -19,7 +19,7 @@ public class Piano
     List<Note> notes = Note.generateNotes(new Note('c', 'n', 4), new Note('c', 'n', 6));
 
     int whiteX = 0;
-    int blackX = 39;
+    int blackX = 35;
     int wc = 0;
     int bc = 0;
     for (Note n: notes) {
@@ -36,12 +36,12 @@ public class Piano
         BlackKey key = new BlackKey(n, blackX);
         keys.add(key);
         blackKeys.add(key);
-        blackX += 2 * key.getWidth();
+        blackX += 52;
         bc++;
         if (bc == 2) {
-          blackX += 2 * key.getWidth();
+          blackX += 52;
         } else if (bc == 5) {
-          blackX += 2 * key.getWidth();
+          blackX += 2 * 52;
           bc = 0;
         }
       }

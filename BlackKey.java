@@ -4,7 +4,7 @@ public class BlackKey extends Key {
 
     public BlackKey(Note NOTE) {
         super(NOTE);
-        this.setWidth(25);
+        this.setWidth(26);
         this.setHeight(125);
         this.setColor(Color.BLACK);
     }

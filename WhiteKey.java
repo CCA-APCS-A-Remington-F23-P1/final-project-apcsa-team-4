@@ -4,7 +4,7 @@ public class WhiteKey extends Key {
 
     public WhiteKey(Note NOTE) {
         super(NOTE);
-        this.setWidth(50);
+        this.setWidth(52);
         this.setHeight(300);
         this.setColor(Color.WHITE);
     }

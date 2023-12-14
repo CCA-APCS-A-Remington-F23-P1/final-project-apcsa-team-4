@@ -6,39 +6,41 @@ import java.util.List;
 
 public class Piano
 {
-  private List<Key> whiteKeys;
-  private List<Key> blackKeys;
+  private List<Key> keys;
+  private List<WhiteKey> whiteKeys;
+  private List<BlackKey> blackKeys;
 
   public Piano()
   {
-    whiteKeys = new ArrayList<Key>(15);
-    blackKeys = new ArrayList<Key>(10);
-    char[] naturalKeys = {'c', 'd', 'e', 'f', 'g', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'c'};
+    keys = new ArrayList<Key>();
+    whiteKeys = new ArrayList<WhiteKey>();
+    blackKeys = new ArrayList<BlackKey>();
 
-    char[] sharpKeys = {'c', 'd', 'f', 'g', 'a', 'c', 'd', 'f', 'g', 'a'};
-    int count = 0;
+    List<Note> notes = Note.generateNotes(new Note('c', 'n', 4), new Note('c', 'n', 6));
 
-    int octave = 4;
-
-    for (int i = 0; i < whiteKeys.size(); i++) {
-      if (count == 6)
-        octave = 5;
-      if (count == 14)
-        octave = 6;
-      whiteKeys.set(i, new WhiteKey(new Note(naturalKeys[i], 'n', octave)));
-      count++;
+    int whiteX = 0;
+    int blackX = 39;
+    int bc = 0;
+    for (Note n: notes) {
+      if (n.getAccidental() == 110) {
+        WhiteKey key = new WhiteKey(n, whiteX);
+        keys.add(key);
+        whiteKeys.add(key);
+        whiteX += key.getWidth();
+      } else if (n.getAccidental() == 115) {
+        BlackKey key = new BlackKey(n, blackX);
+        keys.add(key);
+        blackKeys.add(key);
+        blackX += 2 * key.getWidth();
+        bc++;
+        if (bc == 2) {
+          blackX += 2 * key.getWidth();
+        } else if (bc == 5) {
+          blackX += 2 * key.getWidth();
+          bc = 0;
+        }
+      }
     }
-
-    octave = 4;
-    count = 0;
-
-    for (int i = 0; i < blackKeys.size(); i++) {
-      if (count == 4)
-        octave++;
-      blackKeys.set(i, new BlackKey(new Note(sharpKeys[i], 's', octave)));
-    }
-
-
   }
 
   //post - draw each key
@@ -52,11 +54,11 @@ public class Piano
     }
   }
 
-  public List<Key> getWhiteList()
+  public List<WhiteKey> getWhiteList()
   {
     return whiteKeys;
   }
-  public List<Key> getBlackList()
+  public List<BlackKey> getBlackList()
   {
     return blackKeys;
   }

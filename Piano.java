@@ -27,6 +27,7 @@ public class Piano
         keys.add(key);
         whiteKeys.add(key);
         whiteX += key.getWidth();
+        System.out.println(n);
       } else if (n.getAccidental() == 115) {
         BlackKey key = new BlackKey(n, blackX);
         keys.add(key);

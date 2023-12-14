@@ -16,12 +16,14 @@ public class Screen extends Canvas implements KeyListener, Runnable
 {
   private boolean[] keys;
   private BufferedImage back;
+  private Piano piano;
 
   public Screen()
   {
     setBackground(Color.white);
 
     keys = new boolean[6];
+    piano = new Piano();
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -49,8 +51,10 @@ public class Screen extends Canvas implements KeyListener, Runnable
     Graphics graphToBack = back.createGraphics();
 
     
-    graphToBack.setColor(Color.white);
-    graphToBack.fillRect(0,0,800,600);
+    graphToBack.setColor(Color.green);
+    graphToBack.fillRect(0,0,1600,600);
+
+    piano.draw(graphToBack);
     
 
     if (keys[0])

@@ -72,8 +72,11 @@ public class Key {
     
     //methods
     public void draw(Graphics window) {
-        window.setColor(color);
+        window.setColor(Color.black);
         window.fillRect(getXPos(),getYPos(),getWidth(),getHeight());
+
+        window.setColor(color);
+        window.fillRect(getXPos()+3,getYPos()+3,getWidth()-6,getHeight()-6);
     }
 
     @Override

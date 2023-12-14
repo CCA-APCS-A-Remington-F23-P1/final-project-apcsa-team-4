@@ -9,7 +9,7 @@ public class WhiteKey extends Key {
         this.setColor(Color.WHITE);
     }
 
-    public WhiteKey(Note NOTE, int y) {
-        super(NOTE, y, 50, 300, Color.WHITE);
+    public WhiteKey(Note NOTE, int x) {
+        super(NOTE, x, 50, 300, Color.WHITE);
     }
 }

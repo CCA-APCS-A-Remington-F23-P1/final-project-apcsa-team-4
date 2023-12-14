@@ -24,9 +24,9 @@ public class Key {
         color=c;
     }
 
-    public Key(Note NOTE, int y, int w, int h, Color c) {
+    public Key(Note NOTE, int x, int w, int h, Color c) {
         this.NOTE = NOTE;
-        yPos=y;
+        xPos=x;
         width=w;
         height=h;
         color=c;

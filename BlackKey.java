@@ -9,7 +9,7 @@ public class BlackKey extends Key {
         this.setColor(Color.BLACK);
     }
 
-    public BlackKey(Note NOTE, int y) {
-        super(NOTE, y, 50, 300, Color.BLACK);
+    public BlackKey(Note NOTE, int x) {
+        super(NOTE, x, 50, 300, Color.BLACK);
     }
 }

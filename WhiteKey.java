@@ -1,6 +1,15 @@
+import java.awt.Color;
+
 public class WhiteKey extends Key {
 
     public WhiteKey(Note NOTE) {
         super(NOTE);
+        this.setWidth(50);
+        this.setHeight(300);
+        this.setColor(Color.WHITE);
+    }
+
+    public WhiteKey(Note NOTE, int y) {
+        super(NOTE, y, 50, 300, Color.WHITE);
     }
 }

@@ -61,6 +61,14 @@ public class Key {
     public void setColor(Color col) {
         color = col;
     }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
     
     //methods
     public void draw(Graphics window) {

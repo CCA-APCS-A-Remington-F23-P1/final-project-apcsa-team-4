@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Key {
+public class Key implements Clickable {
     //instance vars
     private final Note NOTE;
     private int xPos;

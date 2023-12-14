@@ -10,6 +10,6 @@ public class BlackKey extends Key {
     }
 
     public BlackKey(Note NOTE, int x) {
-        super(NOTE, x, 50, 300, Color.BLACK);
+        super(NOTE, x, 50, 125, Color.BLACK);
     }
 }

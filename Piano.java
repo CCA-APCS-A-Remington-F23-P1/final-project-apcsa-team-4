@@ -37,7 +37,7 @@ public class Piano
         if (bc == 2) {
           blackX += 52;
         } else if (bc == 5) {
-          blackX += 2 * 52;
+          blackX += 52;
           bc = 0;
         }
       }

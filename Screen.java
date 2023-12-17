@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
@@ -17,6 +19,7 @@ public class Screen extends Canvas implements KeyListener, Runnable
   private boolean[] keys;
   private BufferedImage back;
   private Piano piano;
+  private MouseEvent e;
 
   public Screen()
   {
@@ -56,6 +59,7 @@ public class Screen extends Canvas implements KeyListener, Runnable
     graphToBack.fillRect(0,0,780,1200);
 
     piano.draw(graphToBack);
+    // piano.mouseClicked(e);
     
 
     if (keys[0])
@@ -155,6 +159,7 @@ public class Screen extends Canvas implements KeyListener, Runnable
     }catch(Exception e)
     {
     }
+  
   }
 }
 

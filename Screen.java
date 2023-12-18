@@ -119,9 +119,9 @@ public class Screen extends Canvas implements KeyListener, Runnable
         }
       }
     }
-    else {
-      piano.setColor(Color.red);
-    }
+    // else {
+    //   piano.setColor(Color.red);
+    // }
 
     if (keys[0])
     {

@@ -19,7 +19,15 @@ public class Screen extends Canvas implements KeyListener, Runnable
   private boolean[] keys;
   private BufferedImage back;
   private Piano piano;
+  private Song song;
   private MouseEvent e;
+  private int counti;
+  private int countj;
+  private long timeFromLast;
+  private boolean wait;
+  private boolean fail;
+  private ArrayList<Key> check;
+  private Mouse m;
 
   public Screen()
   {
@@ -27,9 +35,19 @@ public class Screen extends Canvas implements KeyListener, Runnable
 
     keys = new boolean[6];
     piano = new Piano();
+    song = new Song();
+    wait = false;
+    fail = false;
+    check = new ArrayList<Key>(0);
 
     this.addKeyListener(this);
     new Thread(this).start();
+
+
+    m = new Mouse(piano);
+
+    // add mouseListener to the frame
+    addMouseListener(m);
 
     setVisible(true);
   }
@@ -59,8 +77,51 @@ public class Screen extends Canvas implements KeyListener, Runnable
     graphToBack.fillRect(0,0,780,1200);
 
     piano.draw(graphToBack);
-    // piano.mouseClicked(e);
-    
+    // System.out.println(Instant.now().toEpochMilli()-timeFromLast);
+    if (fail == false)
+    {  if (counti < song.getSong().size()) {
+        if (countj < counti+1 && Instant.now().toEpochMilli()-timeFromLast >= 800 && wait == false) {
+          timeFromLast = Instant.now().toEpochMilli();
+          // System.out.println(song.getSong().get(countj));
+          countj++;
+          piano.setOGColor();
+          piano.getKey(song.getSong().get(countj)).setColor(new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255)));
+          check.add(piano.getKey(song.getSong().get(countj)));
+          // System.out.println("hi1");
+        }
+        else if (Instant.now().toEpochMilli()-timeFromLast < 800 && wait == false) {
+
+          // System.out.println("hi2");
+        }
+        else if (wait == false){
+          countj = 0;
+          counti++;
+          // System.out.println();
+          wait = true;
+          // piano.getKey(song.getSong().get(countj)).setOGColor();
+          // System.out.println("hi3");
+        }
+      }
+      if (wait == true) {
+        if (check.size() == m.getUser().size()){
+          for (int i = 0; i < m.getUser().size(); i++) {
+            if (m.getUser().get(i).equals(check.get(i))) {
+              check = new ArrayList<Key>();
+              m.resetUser();
+              wait = false;
+              System.out.println("Slayyy");
+            }
+            else {
+              System.out.println("oop");
+              fail = true;
+            }
+          }
+        }
+      }
+    }
+    else {
+      piano.setColor(Color.red);
+    }
 
     if (keys[0])
     {

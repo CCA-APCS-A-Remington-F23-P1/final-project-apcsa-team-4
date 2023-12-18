@@ -24,6 +24,7 @@ public class Screen extends Canvas implements KeyListener, Runnable
   private int counti;
   private int countj;
   private long timeFromLast;
+  private long timeFromLast2;
   private boolean wait;
   private boolean fail;
   private ArrayList<Key> check;
@@ -39,6 +40,8 @@ public class Screen extends Canvas implements KeyListener, Runnable
     wait = false;
     fail = false;
     check = new ArrayList<Key>(0);
+    counti = 0;
+    countj = 0;
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -77,51 +80,49 @@ public class Screen extends Canvas implements KeyListener, Runnable
     graphToBack.fillRect(0,0,780,1200);
 
     piano.draw(graphToBack);
-    // System.out.println(Instant.now().toEpochMilli()-timeFromLast);
-    if (fail == false)
-    {  if (counti < song.getSong().size()) {
+
+
+    if (fail == false) {  
+      if (counti < song.getSong().size()) {
         if (countj < counti+1 && Instant.now().toEpochMilli()-timeFromLast >= 800 && wait == false) {
+          m.setAllowClick(false);
           timeFromLast = Instant.now().toEpochMilli();
-          // System.out.println(song.getSong().get(countj));
-          countj++;
           piano.setOGColor();
           piano.getKey(song.getSong().get(countj)).setColor(new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255)));
           check.add(piano.getKey(song.getSong().get(countj)));
-          // System.out.println("hi1");
+          countj++;
         }
-        else if (Instant.now().toEpochMilli()-timeFromLast < 800 && wait == false) {
-
-          // System.out.println("hi2");
-        }
+        else if (Instant.now().toEpochMilli()-timeFromLast < 800 && wait == false) {}
         else if (wait == false){
           countj = 0;
           counti++;
-          // System.out.println();
           wait = true;
-          // piano.getKey(song.getSong().get(countj)).setOGColor();
-          // System.out.println("hi3");
         }
       }
       if (wait == true) {
-        if (check.size() == m.getUser().size()){
-          for (int i = 0; i < m.getUser().size(); i++) {
-            if (m.getUser().get(i).equals(check.get(i))) {
-              check = new ArrayList<Key>();
-              m.resetUser();
-              wait = false;
-              System.out.println("Slayyy");
-            }
-            else {
-              System.out.println("oop");
-              fail = true;
-            }
+        m.setAllowClick(true);
+        for (int i = 0; i < m.getUser().size(); i++) {
+          if (!m.getUser().get(i).equals(check.get(i))) {
+            System.out.println("oop");
+            fail = true;
+            break;
+          }
+          if (i == check.size()-1) {
+            check.get(check.size() - 1).setColor(Color.blue);
+            // try {Thread.sleep(800);} catch(Exception e){}
+            m.resetUser();
+            wait = false;
+            check = new ArrayList<Key>();
+            // System.out.println("Slayy");
+            m.setAllowClick(false);
           }
         }
+        timeFromLast2 = Instant.now().toEpochMilli();
       }
     }
-    // else {
-    //   piano.setColor(Color.red);
-    // }
+    if (fail) {
+      piano.setColor(Color.red);
+    }
 
     if (keys[0])
     {

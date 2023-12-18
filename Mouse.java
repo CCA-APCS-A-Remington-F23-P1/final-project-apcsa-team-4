@@ -10,6 +10,7 @@ class Mouse extends Frame implements MouseListener {
 	// static JLabel label1, label2, label3;
     private Piano piano;
     private ArrayList<Key> user;
+    private boolean allowClick;
 
 	// default constructor
 	Mouse(Piano p)
@@ -52,30 +53,35 @@ class Mouse extends Frame implements MouseListener {
         user = new ArrayList<Key>();
     }
 
+    public void setAllowClick(boolean b) {
+        allowClick = b;
+    }
+
 	// this function is invoked when the mouse is pressed or released
 	public void mouseClicked(MouseEvent e)
 	{
+        if (allowClick) {
+            piano.setOGColor();
 
-        piano.setOGColor();
+            for (int i = 0; i < piano.getBlackList().size(); i++) {
+                if (piano.getBlackList().get(i).isClicked(e)){
+                    piano.getBlackList().get(i).setColor(Color.blue);
+                    user.add(piano.getBlackList().get(i));
+                    return;
+                }
 
-        for (int i = 0; i < piano.getBlackList().size(); i++) {
-            if (piano.getBlackList().get(i).isClicked(e)){
-                piano.getBlackList().get(i).setColor(Color.blue);
-                user.add(piano.getBlackList().get(i));
-                return;
+                piano.getBlackList().get(i).setColor(Color.black);
             }
+            for (int i = 0; i < piano.getWhiteList().size(); i++) {
+                if (piano.getWhiteList().get(i).isClicked(e)){
+                    // System.out.println(Color.blue);
+                    piano.getWhiteList().get(i).setColor(Color.blue);
+                    user.add(piano.getWhiteList().get(i));
+                    return;
+                }
 
-            piano.getBlackList().get(i).setColor(Color.black);
-        }
-        for (int i = 0; i < piano.getWhiteList().size(); i++) {
-            if (piano.getWhiteList().get(i).isClicked(e)){
-                // System.out.println(Color.blue);
-                piano.getWhiteList().get(i).setColor(Color.blue);
-                user.add(piano.getWhiteList().get(i));
-                return;
+                piano.getWhiteList().get(i).setColor(Color.white);
             }
-
-            piano.getWhiteList().get(i).setColor(Color.white);
         }
 	}
 }

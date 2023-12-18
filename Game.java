@@ -25,10 +25,6 @@ public class Game extends JFrame
     p.setLayout(new FlowLayout());
 
     // create an object of mouse class
-    Mouse m = new Mouse();
-
-    // add mouseListener to the frame
-    theGame.addMouseListener(m);
 
     // add panel to the frame
     add(p);

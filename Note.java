@@ -109,3 +109,4 @@ public class Note {
         return "" + PITCH + ACCIDENTAL + Integer.toString(OCTAVE);
     }
 }
+

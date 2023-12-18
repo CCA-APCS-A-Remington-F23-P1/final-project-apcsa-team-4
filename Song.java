@@ -13,6 +13,7 @@ public class Song {
     }
 
     public void setSong(String s) {
+        song = new ArrayList<Note>(0);
         if (s.equals("twinkle twinkle")) {
             song.add(new Note('c', 'n', 4));
             song.add(new Note('c', 'n', 4));
@@ -30,5 +31,9 @@ public class Song {
             song.add(new Note('c', 'n', 4));
         }
         
+    }
+
+    public ArrayList<Note> getSong() {
+        return song;
     }
 }

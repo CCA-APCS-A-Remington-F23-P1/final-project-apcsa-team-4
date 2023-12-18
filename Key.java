@@ -12,6 +12,7 @@ public class Key implements Clickable {
     private Color color;
     private Color ogColor;
     private boolean isClicked;
+    private boolean compTurn;
     private Polygon key;
 
     //constructors
@@ -21,6 +22,7 @@ public class Key implements Clickable {
         int[] xpoints = {0, 52, 0, 52};
         int[] ypoints = {0, 0, 300, 300};
         key = new Polygon(xpoints, ypoints, 4);
+        compTurn = false;
     }
 
     public Key(Note NOTE, int x, int y, int w, int h, Color c) {
@@ -35,6 +37,7 @@ public class Key implements Clickable {
         int[] xpoints = {x, x+w, x, x+w};
         int[] ypoints = {y, y, y+h, y+h};
         key = new Polygon(xpoints, ypoints, 4);
+        compTurn = false;
     }
 
     public Key(Note NOTE, int x, int w, int h, Color c) {
@@ -48,6 +51,7 @@ public class Key implements Clickable {
         int[] xpoints = {x, x+w, x, x+w};
         int[] ypoints = {0, 0, h, h};
         key = new Polygon(xpoints, ypoints, 4);
+        compTurn = false;
     }
 
     //getters
@@ -80,12 +84,20 @@ public class Key implements Clickable {
         color = col;
     }
 
+    public void setOGColor() {
+        color = ogColor;
+    }
+
     public void setWidth(int width) {
         this.width = width;
     }
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void setCompTurn(boolean b) {
+        compTurn = b;
     }
 
     public boolean getIsClicked() {
@@ -108,9 +120,10 @@ public class Key implements Clickable {
 
     @Override
     public boolean isClicked(MouseEvent e) {
-        Point p = new Point(e.getX(), e.getY());
-        if (key.contains(p))
+        if ((e.getX() >= xPos && e.getX() <= xPos + width && e.getY() >= yPos && e.getY() <= yPos + height) || compTurn == true)
+        {
             return true;
+        }
         return false;
     }
 }

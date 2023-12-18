@@ -8,11 +8,14 @@ class Mouse extends Frame implements MouseListener {
 
 	// Jlabels to display the actions of events of mouseListener
 	// static JLabel label1, label2, label3;
-    private Piano piano = new Piano();
+    private Piano piano;
+    private ArrayList<Key> user;
 
 	// default constructor
-	Mouse()
+	Mouse(Piano p)
 	{
+        piano = p;
+        user = new ArrayList<Key>();
     }
 
 	// getX() and getY() functions return the
@@ -41,20 +44,38 @@ class Mouse extends Frame implements MouseListener {
 	{
 	}
 
+    public ArrayList<Key> getUser() {
+        return user;
+    }
+
+    public void resetUser() {
+        user = new ArrayList<Key>();
+    }
+
 	// this function is invoked when the mouse is pressed or released
 	public void mouseClicked(MouseEvent e)
 	{
+
+        piano.setOGColor();
+
         for (int i = 0; i < piano.getBlackList().size(); i++) {
             if (piano.getBlackList().get(i).isClicked(e)){
-                System.out.println(piano.getBlackList().get(i).getNote());
+                piano.getBlackList().get(i).setColor(Color.blue);
+                user.add(piano.getBlackList().get(i));
+                return;
             }
+
+            piano.getBlackList().get(i).setColor(Color.black);
         }
         for (int i = 0; i < piano.getWhiteList().size(); i++) {
             if (piano.getWhiteList().get(i).isClicked(e)){
-                System.out.println(piano.getWhiteList().get(i).getNote());
+                // System.out.println(Color.blue);
+                piano.getWhiteList().get(i).setColor(Color.blue);
+                user.add(piano.getWhiteList().get(i));
+                return;
             }
-            //TODO fix the piano. the black kes for the second octae are not in the rifhr place. look at c5
-            //TODO does not check for click if its close to the border of the key
+
+            piano.getWhiteList().get(i).setColor(Color.white);
         }
 	}
 }

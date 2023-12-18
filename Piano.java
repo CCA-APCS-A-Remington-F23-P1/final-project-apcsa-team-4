@@ -1,5 +1,5 @@
 // import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -55,6 +55,17 @@ public class Piano
     }
   }
 
+  public void setOGColor() {
+    for (Key k: keys) {
+      k.setOGColor();
+    }
+  }
+  public void setColor(Color c) {
+    for (Key k: keys) {
+      k.setColor(c);
+    }
+  }
+
   public List<WhiteKey> getWhiteList()
   {
     return whiteKeys;
@@ -62,6 +73,17 @@ public class Piano
   public List<BlackKey> getBlackList()
   {
     return blackKeys;
+  }
+
+  public Key getKey(Note n)
+  {
+    for (Key ns: keys) {
+      if (ns.getNote().equals(n)) {
+        return ns;
+      }
+    }
+    Key k = new Key(new Note('c', 'n', 4));
+    return k;
   }
 
   public String toString()

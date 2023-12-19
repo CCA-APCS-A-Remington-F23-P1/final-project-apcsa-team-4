@@ -29,6 +29,10 @@ public class Screen extends Canvas implements KeyListener, Runnable
   private boolean fail;
   private ArrayList<Key> check;
   private Mouse m;
+  private Button b1;
+  private Button b2;
+  private Button b3;
+  private Button b4;
 
   public Screen()
   {
@@ -42,6 +46,11 @@ public class Screen extends Canvas implements KeyListener, Runnable
     check = new ArrayList<Key>(0);
     counti = 0;
     countj = 0;
+
+    b1 = new Button("twinkle twinkle");
+    b2 = new Button("hot cross buns");
+    b3 = new Button("old mcdonald");
+    b4 = new Button("happy birthday");
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -80,6 +89,10 @@ public class Screen extends Canvas implements KeyListener, Runnable
     graphToBack.fillRect(0,0,780,1200);
 
     piano.draw(graphToBack);
+    b1.draw(graphToBack);
+    b2.draw(graphToBack);
+    b3.draw(graphToBack);
+    b4.draw(graphToBack);
 
 
     if (fail == false) {  

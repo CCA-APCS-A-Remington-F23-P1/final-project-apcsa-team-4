@@ -5,7 +5,8 @@ public class Song {
     private static String[] songs = {"twinkle twinkle", "old mcdonald", "happy birthday", "hot cross buns"};
     private String songName;
     public static ArrayList<Key> check;
-    private static double[] progress;
+    public static int[] progress = {0, 0, 0, 0};
+    private int length;
 
     public Song() {
         setSong("twinkle twinkle");
@@ -31,6 +32,15 @@ public class Song {
         check = new ArrayList<Key>();
     }
 
+    public int getIndex() {
+        for (int i = 0; i < songs.length; i++) {
+            if (songs[i].equals(songName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void setSong(String s) {
         song = new ArrayList<Note>(0);
         if (s.equals("twinkle twinkle")) {
@@ -48,6 +58,7 @@ public class Song {
             song.add(new Note('d', 'n', 4));
             song.add(new Note('d', 'n', 4));
             song.add(new Note('c', 'n', 4));
+            length = 14;
         }
         if (s.equals("old mcdonald")) {
             song.add(new Note('c', 'n', 5));
@@ -62,6 +73,7 @@ public class Song {
             song.add(new Note('d', 'n', 5));
             song.add(new Note('d', 'n', 5));
             song.add(new Note('c', 'n', 5));
+            length = 12;
         }
         if (s.equals("happy birthday")) {
             song.add(new Note('c', 'n', 4));
@@ -89,6 +101,7 @@ public class Song {
             song.add(new Note('f', 'n', 4));
             song.add(new Note('g', 'n', 4));
             song.add(new Note('f', 'n', 4));
+            length = 25;
         }
         if (s.equals("hot cross buns")) {
             song.add(new Note('b', 'n', 5));
@@ -108,8 +121,13 @@ public class Song {
             song.add(new Note('b', 'n', 5));
             song.add(new Note('a', 'n', 5));
             song.add(new Note('g', 'n', 5));
+            length = 17;
         }
         
+    }
+
+    public int getLength() {
+        return length;
     }
 
     public ArrayList<Note> getSong() {

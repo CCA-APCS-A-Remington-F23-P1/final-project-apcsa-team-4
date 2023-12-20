@@ -3,10 +3,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
@@ -14,9 +12,8 @@ import java.util.ArrayList;
 import java.time.*;
 import java.awt.Font;
 
-public class Screen extends Canvas implements KeyListener, Runnable
+public class Screen extends Canvas implements Runnable
 {
-  private boolean[] keys;
   private BufferedImage back;
   private Piano piano;
   private Song song;
@@ -37,7 +34,6 @@ public class Screen extends Canvas implements KeyListener, Runnable
   {
     setBackground(Color.white);
 
-    keys = new boolean[6];
     piano = new Piano();
     song = new Song();
     wait = false;
@@ -51,7 +47,6 @@ public class Screen extends Canvas implements KeyListener, Runnable
     b3 = new Button("old mcdonald");
     b4 = new Button("happy birthday");
 
-    this.addKeyListener(this);
     new Thread(this).start();
 
 
@@ -127,12 +122,16 @@ public class Screen extends Canvas implements KeyListener, Runnable
         m.setAllowClick(true);
         for (int i = 0; i < m.getUser().size(); i++) {
           if (!m.getUser().get(i).equals(Song.check.get(i))) {
-            System.out.println("oop");
+            // System.out.println("oop");
             fail = true;
             break;
           }
           if (i == Song.check.size()-1) {
             Song.check.get(Song.check.size() - 1).setColor(Color.blue);
+
+            if (Song.progress[song.getIndex()] <  m.getUser().size()* 100 / song.getLength())
+              Song.progress[song.getIndex()] =  m.getUser().size() * 100 / song.getLength();
+            // System.out.println(( m.getUser().size()) * 100 / song.getLength());
             // try {Thread.sleep(800);} catch(Exception e){}
             m.resetUser();
             wait = false;
@@ -147,91 +146,11 @@ public class Screen extends Canvas implements KeyListener, Runnable
     if (fail) {
       piano.setColor(Color.red);
     }
-
-    if (keys[0])
-    {
-    }
-    else if (keys[1])
-    {
-    
-    }
-    else if (keys[2])
-    {
-        
-    }
-    else if (keys[3])
-    {
-    
-    }
-    else if (keys[4]) {
-    }
     
 
       twoDGraph.drawImage(back, null, 0, 0);
   }
 
-
-  public void keyPressed(KeyEvent e)
-  {
-    if (e.getKeyCode() == KeyEvent.VK_LEFT)
-    {
-      keys[0] = true;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-    {
-      keys[1] = true;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_UP)
-    {
-      keys[2] = true;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_DOWN)
-    {
-      keys[3] = true;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_SPACE)
-    {
-      keys[4] = true;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_R) {
-      keys[5] = true;
-    }
-    repaint();
-  }
-
-  public void keyReleased(KeyEvent e)
-  {
-    if (e.getKeyCode() == KeyEvent.VK_LEFT)
-    {
-      keys[0] = false;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-    {
-      keys[1] = false;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_UP)
-    {
-      keys[2] = false;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_DOWN)
-    {
-      keys[3] = false;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_SPACE)
-    {
-      keys[4] = false;
-    }
-    if (e.getKeyCode() == KeyEvent.VK_R)
-    {
-      keys[5] = false;
-    }
-    
-    repaint();
-  }
-
-  public void keyTyped(KeyEvent e)
-  {
-  }
 
   public void run()
   {

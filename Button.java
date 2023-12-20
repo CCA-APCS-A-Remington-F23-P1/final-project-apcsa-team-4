@@ -5,6 +5,7 @@ import java.awt.*;
 public class Button implements Clickable {
     public static ArrayList<Button> buttons = new ArrayList<Button>();
     private String song;
+    private Song mySong;
     private static int xVal = 152-120/2;
     private int xPos, yPos, width, height;
     private Color color;
@@ -21,6 +22,7 @@ public class Button implements Clickable {
         height = width;
         color = Color.white;
         buttons.add(this);
+        mySong = new Song(song);
     }
 
     public Button(String songName, int x, int y, int w, int h) {
@@ -31,6 +33,7 @@ public class Button implements Clickable {
         height = h;
         color = Color.white;
         buttons.add(this);
+        mySong = new Song(song);
     }
 
     @Override
@@ -80,6 +83,11 @@ public class Button implements Clickable {
         window.fillRect(getXPos()+1,getYPos()+1,getWidth()-2,getHeight()-2);
 
         window.setColor(Color.black);
-        window.drawString(song, getXPos() + 12, getYPos() + getHeight()/2);
+        window.drawString(song, getXPos() + 12, getYPos() + getHeight()/2-10);
+        // System.out.println(song);
+        // window.drawString("progress: " + Integer.toString(Song.progress[(new Song(song)).getIndex()]), getXPos() + 12, getYPos() + getHeight()/2+10); // TODO show progress
+        window.drawString("progress: " + Integer.toString(Song.progress[mySong.getIndex()]) + "%", getXPos() + 12, getYPos() + getHeight()/2+10);
+        // window.drawString(Integer.toString(Song.progress[mySong.getIndex()]), getXPos() + 12, getYPos() + getHeight()/2+10); // TODO show progress
+
     }
 }

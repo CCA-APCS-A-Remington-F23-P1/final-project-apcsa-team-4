@@ -2,14 +2,33 @@ import java.util.*;
 
 public class Song {
     private ArrayList<Note> song;
-    private static String[] songs = {"twinkle twinkle", "old macdonald", "happy birthday", "hot cross buns", "row your boat", "itsy bitsy spider"};
+    private static String[] songs = {"twinkle twinkle", "old mcdonald", "happy birthday", "hot cross buns"};
+    private String songName;
+    public static ArrayList<Key> check;
+    private static double[] progress;
 
     public Song() {
         setSong("twinkle twinkle");
+        songName = "twinkle twinkle";
+        check = new ArrayList<Key>();
     }
 
     public Song(String s) {
         setSong(s);
+        songName = s;
+        check = new ArrayList<Key>();
+    }
+
+    public String getSongName() {
+        return songName;
+    }
+
+    public static void addCheck(Key k) {
+        check.add(k);
+    } 
+
+    public static void resetCheck() {
+        check = new ArrayList<Key>();
     }
 
     public void setSong(String s) {
@@ -30,7 +49,7 @@ public class Song {
             song.add(new Note('d', 'n', 4));
             song.add(new Note('c', 'n', 4));
         }
-        if (s.equals("old macdonald")) {
+        if (s.equals("old mcdonald")) {
             song.add(new Note('c', 'n', 5));
             song.add(new Note('c', 'n', 5));
             song.add(new Note('c', 'n', 5));

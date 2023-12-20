@@ -27,7 +27,6 @@ public class Screen extends Canvas implements KeyListener, Runnable
   private long timeFromLast2;
   private boolean wait;
   private boolean fail;
-  private ArrayList<Key> check;
   private Mouse m;
   private Button b1;
   private Button b2;
@@ -43,11 +42,11 @@ public class Screen extends Canvas implements KeyListener, Runnable
     song = new Song();
     wait = false;
     fail = false;
-    check = new ArrayList<Key>(0);
     counti = 0;
     countj = 0;
 
     b1 = new Button("twinkle twinkle");
+    b1.setColor(Color.green);
     b2 = new Button("hot cross buns");
     b3 = new Button("old mcdonald");
     b4 = new Button("happy birthday");
@@ -94,6 +93,18 @@ public class Screen extends Canvas implements KeyListener, Runnable
     b3.draw(graphToBack);
     b4.draw(graphToBack);
 
+    
+    if (song != m.getSong()) {
+      song = m.getSong();
+      counti = 0;
+      countj = 0;
+      fail = false;
+      wait = false;
+      m.setAllowClick(false);
+    }
+
+    graphToBack.setFont(new Font("MS Mincho",Font.PLAIN, 53));
+    graphToBack.drawString(song.getSongName(), 200, 400);
 
     if (fail == false) {  
       if (counti < song.getSong().size()) {
@@ -102,7 +113,7 @@ public class Screen extends Canvas implements KeyListener, Runnable
           timeFromLast = Instant.now().toEpochMilli();
           piano.setOGColor();
           piano.getKey(song.getSong().get(countj)).setColor(new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255)));
-          check.add(piano.getKey(song.getSong().get(countj)));
+          Song.check.add(piano.getKey(song.getSong().get(countj)));
           countj++;
         }
         else if (Instant.now().toEpochMilli()-timeFromLast < 800 && wait == false) {}
@@ -115,17 +126,17 @@ public class Screen extends Canvas implements KeyListener, Runnable
       if (wait == true) {
         m.setAllowClick(true);
         for (int i = 0; i < m.getUser().size(); i++) {
-          if (!m.getUser().get(i).equals(check.get(i))) {
+          if (!m.getUser().get(i).equals(Song.check.get(i))) {
             System.out.println("oop");
             fail = true;
             break;
           }
-          if (i == check.size()-1) {
-            check.get(check.size() - 1).setColor(Color.blue);
+          if (i == Song.check.size()-1) {
+            Song.check.get(Song.check.size() - 1).setColor(Color.blue);
             // try {Thread.sleep(800);} catch(Exception e){}
             m.resetUser();
             wait = false;
-            check = new ArrayList<Key>();
+            Song.check = new ArrayList<Key>();
             // System.out.println("Slayy");
             m.setAllowClick(false);
           }

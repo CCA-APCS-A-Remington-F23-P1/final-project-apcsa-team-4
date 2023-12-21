@@ -17,7 +17,7 @@ public class Piano
     whiteKeys = new ArrayList<WhiteKey>();
     blackKeys = new ArrayList<BlackKey>();
 
-    List<Note> notes = Note.generateNotes(new Note('c', 'n', 4), new Note('c', 'n', 6));
+    List<Note> notes = Note.generateNotes(new Note('c', 'n', 4), new Note('c', 'n', 7));
 
     int whiteX = 0;
     int blackX = 35;

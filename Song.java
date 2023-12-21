@@ -58,8 +58,8 @@ public class Song {
             song.add(new Note('c', 'n', 4));
             song.add(new Note('g', 'n', 4));
             song.add(new Note('g', 'n', 4));
-            song.add(new Note('a', 'n', 4));
-            song.add(new Note('a', 'n', 4));
+            song.add(new Note('a', 'n', 5));
+            song.add(new Note('a', 'n', 5));
             song.add(new Note('g', 'n', 4));
             song.add(new Note('f', 'n', 4));
             song.add(new Note('f', 'n', 4));
@@ -75,8 +75,8 @@ public class Song {
             song.add(new Note('c', 'n', 5));
             song.add(new Note('c', 'n', 5));
             song.add(new Note('g', 'n', 4));
-            song.add(new Note('a', 'n', 4));
-            song.add(new Note('a', 'n', 4));
+            song.add(new Note('a', 'n', 5));
+            song.add(new Note('a', 'n', 5));
             song.add(new Note('g', 'n', 4));
             song.add(new Note('e', 'n', 5));
             song.add(new Note('e', 'n', 5));
@@ -101,13 +101,13 @@ public class Song {
             song.add(new Note('c', 'n', 4));
             song.add(new Note('c', 'n', 4));
             song.add(new Note('c', 'n', 5));
-            song.add(new Note('a', 'n', 4));
+            song.add(new Note('a', 'n', 5));
             song.add(new Note('g', 'n', 4));
             song.add(new Note('e', 'n', 4));
             song.add(new Note('d', 'n', 4));
-            song.add(new Note('a', 's', 4));
-            song.add(new Note('a', 's', 4));
-            song.add(new Note('a', 'n', 4));
+            song.add(new Note('a', 's', 5));
+            song.add(new Note('a', 's', 5));
+            song.add(new Note('a', 'n', 5));
             song.add(new Note('f', 'n', 4));
             song.add(new Note('g', 'n', 4));
             song.add(new Note('f', 'n', 4));
@@ -116,21 +116,21 @@ public class Song {
         if (s.equals("hot cross buns")) {
             song.add(new Note('b', 'n', 5));
             song.add(new Note('a', 'n', 5));
-            song.add(new Note('g', 'n', 5));
+            song.add(new Note('g', 'n', 4));
             song.add(new Note('b', 'n', 5));
             song.add(new Note('a', 'n', 5));
-            song.add(new Note('g', 'n', 5));
-            song.add(new Note('g', 'n', 5));
-            song.add(new Note('g', 'n', 5));
-            song.add(new Note('g', 'n', 5));
-            song.add(new Note('g', 'n', 5));
+            song.add(new Note('g', 'n', 4));
+            song.add(new Note('g', 'n', 4));
+            song.add(new Note('g', 'n', 4));
+            song.add(new Note('g', 'n', 4));
+            song.add(new Note('g', 'n', 4));
             song.add(new Note('a', 'n', 5));
             song.add(new Note('a', 'n', 5));
             song.add(new Note('a', 'n', 5));
             song.add(new Note('a', 'n', 5));
             song.add(new Note('b', 'n', 5));
             song.add(new Note('a', 'n', 5));
-            song.add(new Note('g', 'n', 5));
+            song.add(new Note('g', 'n', 4));
             length = 17;
         }
         

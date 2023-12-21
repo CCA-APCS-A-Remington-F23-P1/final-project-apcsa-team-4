@@ -24,14 +24,14 @@ public class SimpleAudioPlayer
 	static String filePath; 
 
 	// constructor to initialize streams and clip 
-	public SimpleAudioPlayer() 
+	public SimpleAudioPlayer(Note n) 
 		throws UnsupportedAudioFileException, 
 		IOException, LineUnavailableException 
 	{ 
 		// create AudioInputStream object 
-        Note n = new Note('c', 'n', 4);
+        n = n;
 		audioInputStream = 
-				AudioSystem.getAudioInputStream(n.getSoundFile()); 
+				AudioSystem.getAudioInputStream(new File(n.getSoundFile())); 
 		
 		// create clip reference 
 		clip = AudioSystem.getClip(); 
@@ -39,7 +39,7 @@ public class SimpleAudioPlayer
 		// open audioInputStream to the clip 
 		clip.open(audioInputStream); 
 		
-		clip.loop(Clip.LOOP_CONTINUOUSLY); 
+		// clip.loop(Clip.LOOP_CONTINUOUSLY); 
 	} 
 
 	public static void main(String[] args) 
@@ -48,9 +48,9 @@ public class SimpleAudioPlayer
 		{ 
 			filePath = "Your path for the file"; 
 			SimpleAudioPlayer audioPlayer = 
-							new SimpleAudioPlayer(); 
+							new SimpleAudioPlayer(new Note('c', 'n', 4)); 
 			
-			audioPlayer.play(); 
+			audioPlayer.loop(0); 
 			Scanner sc = new Scanner(System.in); 
 			
 			while (true) 
@@ -115,6 +115,12 @@ public class SimpleAudioPlayer
 		
 		status = "play"; 
 	} 
+
+	// Method to loop the audio
+	public void loop(int n) {
+		clip.loop(n);
+		status = "loop";
+	}
 	
 	// Method to pause the audio 
 	public void pause() 
@@ -189,7 +195,7 @@ public class SimpleAudioPlayer
 		audioInputStream = AudioSystem.getAudioInputStream( 
 		new File(filePath).getAbsoluteFile()); 
 		clip.open(audioInputStream); 
-		clip.loop(Clip.LOOP_CONTINUOUSLY); 
+		// clip.loop(Clip.LOOP_CONTINUOUSLY); 
 	} 
 
 } 

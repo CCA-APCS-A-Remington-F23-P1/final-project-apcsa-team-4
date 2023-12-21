@@ -1,6 +1,17 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import java.io.File; 
+import java.util.Scanner; 
+
+import javax.sound.sampled.AudioInputStream; 
+import javax.sound.sampled.AudioSystem; 
+import javax.sound.sampled.Clip; 
 
 public class Key implements Clickable {
     //instance vars
@@ -122,7 +133,15 @@ public class Key implements Clickable {
     public boolean isClicked(MouseEvent e) {
         if ((e.getX() >= xPos && e.getX() <= xPos + width && e.getY() >= yPos && e.getY() <= yPos + height) || compTurn == true)
         {
-            return true;
+            SimpleAudioPlayer audioPlayer;
+            try {
+                audioPlayer = new SimpleAudioPlayer(getNote());
+                audioPlayer.loop(0); 
+                return true;
+          } catch (UnsupportedAudioFileException | IOException | LineUnavailableException event) {
+            // TODO Auto-generated catch block
+            event.printStackTrace();
+          }
         }
         return false;
     }

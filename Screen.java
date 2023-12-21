@@ -12,6 +12,16 @@ import java.util.ArrayList;
 import java.time.*;
 import java.awt.Font;
 
+import java.io.File; 
+import java.io.IOException; 
+import java.util.Scanner; 
+
+import javax.sound.sampled.AudioInputStream; 
+import javax.sound.sampled.AudioSystem; 
+import javax.sound.sampled.Clip; 
+import javax.sound.sampled.LineUnavailableException; 
+import javax.sound.sampled.UnsupportedAudioFileException;  
+
 public class Screen extends Canvas implements Runnable
 {
   private BufferedImage back;
@@ -101,24 +111,32 @@ public class Screen extends Canvas implements Runnable
     graphToBack.setFont(new Font("MS Mincho",Font.PLAIN, 53));
     graphToBack.drawString(song.getSongName(), 200, 400);
 
-    if (fail == false) {  
+    if (!fail) {  
       if (counti < song.getSong().size()) {
         if (countj < counti+1 && Instant.now().toEpochMilli()-timeFromLast >= 800 && wait == false) {
           m.setAllowClick(false);
           timeFromLast = Instant.now().toEpochMilli();
           piano.setOGColor();
+          SimpleAudioPlayer audioPlayer;
+          try {
+            audioPlayer = new SimpleAudioPlayer(song.getSong().get(countj));
+            audioPlayer.loop(0); 
+          } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
           piano.getKey(song.getSong().get(countj)).setColor(new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255)));
           Song.check.add(piano.getKey(song.getSong().get(countj)));
           countj++;
         }
         else if (Instant.now().toEpochMilli()-timeFromLast < 800 && wait == false) {}
-        else if (wait == false){
+        else if (!wait){
           countj = 0;
           counti++;
           wait = true;
         }
       }
-      if (wait == true) {
+      if (wait) {
         m.setAllowClick(true);
         for (int i = 0; i < m.getUser().size(); i++) {
           if (!m.getUser().get(i).equals(Song.check.get(i))) {
@@ -144,6 +162,14 @@ public class Screen extends Canvas implements Runnable
       }
     }
     if (fail) {
+      SimpleAudioPlayer audioPlayer;
+          try {
+            audioPlayer = new SimpleAudioPlayer(song.getSong().get(countj));
+            audioPlayer.loop(0); 
+          } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
       piano.setColor(Color.red);
     }
     

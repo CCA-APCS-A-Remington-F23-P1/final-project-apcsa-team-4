@@ -1,4 +1,4 @@
-import java.io.File;
+// import java.io.File;
 import java.util.ArrayList;
 
 public class Note {
@@ -6,7 +6,7 @@ public class Note {
     private final char PITCH;
     private final char ACCIDENTAL;
     private final int OCTAVE;
-    private final File SOUNDFILE;
+    private final String SOUNDFILE;
 
     /**
      * Constructs a new {@code Note} object from a given note letter, accidental, and octave number. There are no enharmonics; all notes are written as naturals or sharps.
@@ -19,7 +19,7 @@ public class Note {
         PITCH = pitch;
         ACCIDENTAL = accidental;
         OCTAVE = octave;
-        SOUNDFILE = new File("sounds\\" + this.toString() + ".mp3");
+        SOUNDFILE = "sounds\\" + this.toString() + ".wav";
     }
 
     /**
@@ -94,7 +94,7 @@ public class Note {
         return OCTAVE;
     }
 
-    public File getSoundFile() {
+    public String getSoundFile() {
         return SOUNDFILE;
     }
 

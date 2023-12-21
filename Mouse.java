@@ -63,6 +63,10 @@ class Mouse extends Frame implements MouseListener {
         return song;
     }
 
+    public void setSong(Song s) {
+        song = s;
+    }
+
 	// this function is invoked when the mouse is pressed or released
 	public void mouseClicked(MouseEvent e)
 	{

@@ -1,11 +1,12 @@
 import java.util.*;
+import java.io.*;
 
 public class Song {
     private ArrayList<Note> song;
-    private static String[] songs = {"twinkle twinkle", "old mcdonald", "happy birthday", "hot cross buns"};
+    public static String[] songs = {"twinkle twinkle", "hot cross buns", "old mcdonald", "happy birthday"};
     private String songName;
     public static ArrayList<Key> check;
-    public static int[] progress = {0, 0, 0, 0};
+    public static int[] progress = new int[4];
     private int length;
 
     public Song() {
@@ -39,6 +40,15 @@ public class Song {
             }
         }
         return -1;
+    }
+
+    public static boolean isDone() {
+        for (int i = 0; i < 4; i++) {
+            if (progress[i] != 100) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setSong(String s) {
@@ -132,5 +142,9 @@ public class Song {
 
     public ArrayList<Note> getSong() {
         return song;
+    }
+
+    public String toString() {
+        return songName;
     }
 }
